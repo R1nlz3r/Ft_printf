@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 19:09:21 by mapandel          #+#    #+#             */
-/*   Updated: 2017/01/20 19:09:39 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/02/16 21:22:56 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,29 @@
 static void    ft_printf_color_4(const char *format)
 {
   if (ft_strnstr(format, "background_magenta", 18))
-    ft_putstr(BACKGROUND_MAGENTA);
+    ft_putstr(C_BACKGROUND_MAGENTA);
   else if (ft_strnstr(format, "background_cyan", 15))
-    ft_putstr(BACKGROUND_CYAN);
+    ft_putstr(C_BACKGROUND_CYAN);
   else if (ft_strnstr(format, "background_light_gray", 21))
-    ft_putstr(BACKGROUND_LIGHT_GRAY);
+    ft_putstr(C_BACKGROUND_LIGHT_GRAY);
   else if (ft_strnstr(format, "background_dark_gray", 20))
-    ft_putstr(BACKGROUND_DARK_GRAY);
+    ft_putstr(C_BACKGROUND_DARK_GRAY);
   else if (ft_strnstr(format, "background_light_red", 20))
-    ft_putstr(BACKGROUND_LIGHT_RED);
+    ft_putstr(C_BACKGROUND_LIGHT_RED);
   else if (ft_strnstr(format, "background_light_green", 22))
-    ft_putstr(BACKGROUND_LIGHT_GREEN);
+    ft_putstr(C_BACKGROUND_LIGHT_GREEN);
   else if (ft_strnstr(format, "background_light_yellow", 23))
-    ft_putstr(BACKGROUND_LIGHT_YELLOW);
+    ft_putstr(C_BACKGROUND_LIGHT_YELLOW);
   else if (ft_strnstr(format, "background_light_blue", 21))
-    ft_putstr(BACKGROUND_LIGHT_BLUE);
+    ft_putstr(C_BACKGROUND_LIGHT_BLUE);
   else if (ft_strnstr(format, "background_light_magenta", 24))
-    ft_putstr(BACKGROUND_LIGHT_MAGENTA);
+    ft_putstr(C_BACKGROUND_LIGHT_MAGENTA);
   else if (ft_strnstr(format, "background_light_cyan", 21))
-    ft_putstr(BACKGROUND_LIGHT_CYAN);
+    ft_putstr(C_BACKGROUND_LIGHT_CYAN);
   else if (ft_strnstr(format, "background_white", 16))
-    ft_putstr(BACKGROUND_WHITE);
+    ft_putstr(C_BACKGROUND_WHITE);
   else if (ft_strnstr(format, "reset_background_color", 22))
-    ft_putstr(RESET_BACKGROUND_COLOR);
+    ft_putstr(C_RESET_BACKGROUND_COLOR);
   else
     exit(0);
 }
@@ -45,29 +45,29 @@ static void    ft_printf_color_4(const char *format)
 static void    ft_printf_color_3(const char *format)
 {
   if (ft_strnstr(format, "light_green", 11))
-    ft_putstr(LIGHT_GREEN);
+    ft_putstr(C_LIGHT_GREEN);
   else if (ft_strnstr(format, "light_yellow", 12))
-    ft_putstr(LIGHT_YELLOW);
+    ft_putstr(C_LIGHT_YELLOW);
   else if (ft_strnstr(format, "light_blue", 10))
-    ft_putstr(LIGHT_BLUE);
+    ft_putstr(C_LIGHT_BLUE);
   else if (ft_strnstr(format, "light_megenta", 13))
-    ft_putstr(LIGHT_MAGENTA);
+    ft_putstr(C_LIGHT_MAGENTA);
   else if (ft_strnstr(format, "light_cyan", 10))
-    ft_putstr(LIGHT_CYAN);
+    ft_putstr(C_LIGHT_CYAN);
   else if (ft_strnstr(format, "white", 5))
-    ft_putstr(WHITE);
+    ft_putstr(C_WHITE);
   else if (ft_strnstr(format, "reset_color", 11))
-    ft_putstr(RESET_COLOR);
+    ft_putstr(C_RESET_COLOR);
   else if (ft_strnstr(format, "background_black", 16))
-    ft_putstr(BACKGROUND_BLACK);
+    ft_putstr(C_BACKGROUND_BLACK);
   else if (ft_strnstr(format, "background_red", 14))
-    ft_putstr(BACKGROUND_RED);
+    ft_putstr(C_BACKGROUND_RED);
   else if (ft_strnstr(format, "background_green", 16))
-    ft_putstr(BACKGROUND_GREEN);
+    ft_putstr(C_BACKGROUND_GREEN);
   else if (ft_strnstr(format, "background_yellow", 17))
-    ft_putstr(BACKGROUND_YELLOW);
+    ft_putstr(C_BACKGROUND_YELLOW);
   else if (ft_strnstr(format, "background_blue", 15))
-    ft_putstr(BACKGROUND_BLUE);
+    ft_putstr(C_BACKGROUND_BLUE);
   else
     ft_printf_color_4(format);
 }
@@ -75,29 +75,29 @@ static void    ft_printf_color_3(const char *format)
 static void    ft_printf_color_2(const char *format)
 {
   if (ft_strnstr(format, "reset_hidden", 12))
-    ft_putstr(RESET_BOLD);
+    ft_putstr(C_RESET_BOLD);
   else if (ft_strnstr(format, "eoc", 16))
-    ft_putstr(EOC);
+    ft_putstr(C_EOC);
   else if (ft_strnstr(format, "black", 5))
-    ft_putstr(BLACK);
+    ft_putstr(C_BLACK);
   else if (ft_strnstr(format, "red", 3))
-    ft_putstr(RED);
+    ft_putstr(C_RED);
   else if (ft_strnstr(format, "green", 5))
-    ft_putstr(GREEN);
+    ft_putstr(C_GREEN);
   else if (ft_strnstr(format, "yellow", 6))
-    ft_putstr(YELLOW);
+    ft_putstr(C_YELLOW);
   else if (ft_strnstr(format, "blue", 4))
-    ft_putstr(BLUE);
+    ft_putstr(C_BLUE);
   else if (ft_strnstr(format, "magenta", 7))
-    ft_putstr(MAGENTA);
+    ft_putstr(C_MAGENTA);
   else if (ft_strnstr(format, "cyan", 4))
-    ft_putstr(CYAN);
+    ft_putstr(C_CYAN);
   else if (ft_strnstr(format, "light_gray", 10))
-    ft_putstr(LIGHT_GRAY);
+    ft_putstr(C_LIGHT_GRAY);
   else if (ft_strnstr(format, "dark_gray", 9))
-    ft_putstr(DARK_GRAY);
+    ft_putstr(C_DARK_GRAY);
   else if (ft_strnstr(format, "light_red", 9))
-    ft_putstr(LIGHT_RED);
+    ft_putstr(C_LIGHT_RED);
   else
     ft_printf_color_3(format);
 }
@@ -105,27 +105,27 @@ static void    ft_printf_color_2(const char *format)
 void    ft_printf_color(t_printf *print, const char *format)
 {
   if (ft_strnstr(format, "bold", 4))
-    ft_putstr(BOLD);
+    ft_putstr(C_BOLD);
   else if (ft_strnstr(format, "reset_bold", 10))
-    ft_putstr(RESET_BOLD);
+    ft_putstr(C_RESET_BOLD);
   else if (ft_strnstr(format, "dim", 3))
-    ft_putstr(DIM);
+    ft_putstr(C_DIM);
   else if (ft_strnstr(format, "reset_dim", 9))
-    ft_putstr(RESET_DIM);
+    ft_putstr(C_RESET_DIM);
   else if (ft_strnstr(format, "underline", 9))
-    ft_putstr(UNDERLINE);
+    ft_putstr(C_UNDERLINE);
   else if (ft_strnstr(format, "reset_underline", 15))
-    ft_putstr(RESET_UNDERLINE);
+    ft_putstr(C_RESET_UNDERLINE);
   else if (ft_strnstr(format, "blink", 5))
-    ft_putstr(BLINK);
+    ft_putstr(C_BLINK);
   else if (ft_strnstr(format, "reset_blink", 11))
-    ft_putstr(RESET_BLINK);
+    ft_putstr(C_RESET_BLINK);
   else if (ft_strnstr(format, "reverse", 7))
-    ft_putstr(REVERSE);
+    ft_putstr(C_REVERSE);
   else if (ft_strnstr(format, "reset_reverse", 13))
-    ft_putstr(RESET_REVERSE);
+    ft_putstr(C_RESET_REVERSE);
   else if (ft_strnstr(format, "hidden", 6))
-    ft_putstr(HIDDEN);
+    ft_putstr(C_HIDDEN);
   else
     ft_printf_color_2(format);
   print->i += ft_strclen(format, '}') + 1;
