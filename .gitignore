@@ -3,3 +3,4 @@
 .nfs.*
 *.swp
 *.o
+libftprintf.a
