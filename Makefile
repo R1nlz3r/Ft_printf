@@ -6,7 +6,7 @@
 #    By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 03:03:10 by mapandel          #+#    #+#              #
-#    Updated: 2017/02/18 22:25:15 by mapandel         ###   ########.fr        #
+#    Updated: 2017/03/29 15:12:03 by mapandel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,7 @@ CFLAGS = 	-Wall -Wextra -Werror
 
 #			Sources
 
-SRC =		ft_printf.c \
-			ft_printf_color.c \
-			ft_printf_conv.c \
-			ft_printf_parser.c \
-			libft/ft_atoi.c \
+SRC =		libft/ft_atoi.c \
 			libft/ft_bzero.c \
 			libft/ft_isalnum.c \
 			libft/ft_isalpha.c \
@@ -104,6 +100,12 @@ SRC =		ft_printf.c \
 			libft/ft_tabfill.c \
 			libft/ft_tolower.c \
 			libft/ft_toupper.c \
+			sources/ft_printf.c \
+			sources/ft_printf_touch_list.c \
+			sources/ft_printf_search_args.c \
+			sources/ft_printf_get_additional_fields.c \
+			sources/ft_printf_display.c \
+			sources/ft_printf_color.c \
 
 OBJ =		$(SRC:.c=.o)
 
