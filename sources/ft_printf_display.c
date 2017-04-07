@@ -5,55 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/22 20:43:55 by mapandel          #+#    #+#             */
-/*   Updated: 2017/02/24 11:41:20 by mapandel         ###   ########.fr       */
+/*   Created: 2017/03/30 19:57:38 by mapandel          #+#    #+#             */
+/*   Updated: 2017/04/07 15:55:37 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static t_printf		*ft_printf_parsing_display(t_printf *p,
-	const char *format)
+void		ft_printf_display(t_printf *p, const char *format)
 {
-	while (format[p->i]
-		&& !(ft_strrchr("%aAbcCdDeEfFgGiknoOpruUxX{", format[p->i])))
-	{
-		if (!(ft_strrchr("hjlqtz", format[p->i])))
-			p = ft_printf_get_modifier(p, format);
-		else if (!(ft_strrchr("#- +'", format[p->i])))
-			p = ft_printf_get_flags(p, format);
-		else if (!ft_strrchr(".1234567890$", format[p->i]))
-		{
-			ft_putchar(format[p->i]);
-			++p->ret;
-			return (NULL);
-		}
-		++p->i;
-	}
-	if (!format[p->i])
-		(void)p;
-		//go display
-	return (p);
-}
+	size_t		buf;
 
-t_printf			*ft_printf_display(t_printf *p, const char *format)
-{
-	t_printf	*tmp;
-
-	while (format[p->i])
+	while (format[p->index])
 	{
-		if (format[p->i] == '%')
+		buf = ft_strclen(&format[p->index], '%');
+		write (1, &format[p->index], buf);
+		p->ret += buf;
+		p->index += buf;
+		if (format[p->index] == '%')
 		{
-			++p->i;
-			if ((tmp = ft_printf_parsing_display(p, format)))
-				p = tmp;
+			if (!format[++p->index])
+				break ;
+			p = ft_printf_parsing(p, format);
+			if (!p || p->error || p->conv == FT_PRINTF_WAIT_INPUT)
+				break ;
+			//p = ft_printf_conv(p, format);
+			//reset_t_printf(p);
 		}
-		else
-		{
-			++p->ret;
-			ft_putchar(format[p->i]);
-		}
-		++p->i;
 	}
-	return (p);
 }
