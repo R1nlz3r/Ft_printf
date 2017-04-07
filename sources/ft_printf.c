@@ -5,28 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/20 18:57:46 by mapandel          #+#    #+#             */
-/*   Updated: 2017/02/24 00:03:42 by mapandel         ###   ########.fr       */
+/*   Created: 2017/03/30 10:21:36 by mapandel          #+#    #+#             */
+/*   Updated: 2017/04/07 15:32:47 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int					ft_printf(const char *format, ...)
+int		ft_printf(char *format, ...)
 {
 	t_printf		*p;
 	int				ret;
 
 	p = NULL;
-	if (!format)
-		exit (-1);
-	p = ft_init_t_printf(p);
-	va_start(p->list, format);
-	p = ft_printf_search_args(p, format);
-	p->i = 0;
-	p = ft_printf_display(p, format);
+	ret = 0;
+	if (!format || !(p = init_t_printf(p)))
+		return (-1);
+	va_start(p->ap, format);
+	ft_printf_display(p, format);
+	va_end(p->ap);
 	ret = p->ret;
-	va_end(p->list);
-	ft_del_t_printf(p);
+	del_t_printf(p);
 	return (ret);
 }
