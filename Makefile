@@ -6,7 +6,7 @@
 #    By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 03:03:10 by mapandel          #+#    #+#              #
-#    Updated: 2017/03/29 15:18:41 by mapandel         ###   ########.fr        #
+#    Updated: 2017/04/07 14:55:01 by mapandel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME =		libftprintf.a
 #			Compilation
 
 CC = 		clang
-CFLAGS = 	-Wall -Wextra -Werror
+CFLAGS = 	-Weverything
 
 #			Sources
 
@@ -113,13 +113,15 @@ SRC =		libft/ft_atoi.c \
 			libft/get_next_line.c \
 			libft/get_next_char.c \
 			sources/ft_printf.c \
-			sources/ft_printf_touch_list.c \
-			sources/ft_printf_search_args.c \
-			sources/ft_printf_get_additional_fields.c \
+			sources/touch_t_printf.c \
 			sources/ft_printf_display.c \
-			sources/ft_printf_color.c \
+			sources/ft_printf_parsing.c \
+			sources/ft_printf_get_conv.c \
+			sources/ft_printf_get_modifier.c \
 
 OBJ =		$(SRC:.c=.o)
+
+INC =		includes
 
 #			Colors
 
@@ -143,7 +145,7 @@ WHI =		\033[37m
 $(NAME):
 	@make affcompil
 	@echo "$(GRE)--::Libftprintf Indextion::--$(DEF)"
-	@ar rc $(NAME) $(OBJ)
+	@ar rc $(NAME) $(LIBPATH) $(OBJ)
 	@ranlib $(NAME)
 
 all: $(NAME)
@@ -153,7 +155,7 @@ re: fclean all
 #			Compilation Rules
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $^
+	$(CC) $(CFLAGS) -c -o $@ $^ -I $(INC)
 
 affcompil:
 	@echo "$(BLU)--::Libftprintf Compilation::--$(DEF)"
@@ -162,9 +164,9 @@ affcompil:
 #			Clean Rules
 
 clean:
-	@echo "$(PUR)--::Libftprintf Binary Delection::--$(DEF)"
+	@echo "$(PUR)--::Libftprintf.a Binary Delection::--$(DEF)"
 	@rm -rf $(OBJ)
 
 fclean: clean
-	@echo "$(RED)--::Libftprintf.a Delection::--$(DEF)"
+	@echo "$(RED)--::Library Delection::--$(DEF)"
 	@rm -rf $(NAME)
