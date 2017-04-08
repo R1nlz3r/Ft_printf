@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 10:27:37 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/07 17:11:12 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/04/08 18:21:47 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void			reset_t_printf(t_printf *p)
 	p->flags->sharp = 0;
 	p->flags->apostrophe = 0;
 	p->precision = -1;
+	p->width = -1;
 	p->modifier = FT_PRINTF_NO_MODIFIERS;
 	p->conv = FT_PRINTF_WAIT_INPUT;
 }
