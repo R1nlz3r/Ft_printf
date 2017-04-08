@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 10:19:56 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/07 14:57:06 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/04/07 23:00:47 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,28 @@ enum e_printf_conv
 	FT_PRINTF_PERCENT
 };
 
+typedef struct					s_printf_flags
+{
+	int							sharp;
+	int							zero;
+	int							less;
+	int							space;
+	int							plus;
+	int							apostrophe;
+}								t_printf_flags;
+
 typedef struct					s_printf
 {
 	va_list						ap;
 	int							error;
 	int							index;
 	int							ret;
+//			Parsing //
+	int							precision;
+	t_printf_flags				*flags;
 	enum e_printf_modifier		modifier;
 	enum e_printf_conv			conv;
-	char						pad_0[4];
+//					//
 }								t_printf;
 
 int				ft_printf(char *format, ...);
@@ -60,4 +73,6 @@ void			ft_printf_display(t_printf *p, const char *format);
 t_printf		*ft_printf_parsing(t_printf *p, const char *format);
 void			ft_printf_get_conv(t_printf *p, const char *format);
 void			ft_printf_get_modifier(t_printf *p, const char *format);
+void			ft_printf_get_flag(t_printf *p, const char *format);
+void			ft_printf_get_precision(t_printf *p, const char *format);
 #endif
