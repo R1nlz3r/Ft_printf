@@ -6,7 +6,7 @@
 #    By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 03:03:10 by mapandel          #+#    #+#              #
-#    Updated: 2017/04/07 14:55:01 by mapandel         ###   ########.fr        #
+#    Updated: 2017/04/07 23:01:24 by mapandel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME =		libftprintf.a
 #			Compilation
 
 CC = 		clang
-CFLAGS = 	-Weverything
+CFLAGS = 	-Wall -Wextra -Werror -Weverything
 
 #			Sources
 
@@ -118,6 +118,8 @@ SRC =		libft/ft_atoi.c \
 			sources/ft_printf_parsing.c \
 			sources/ft_printf_get_conv.c \
 			sources/ft_printf_get_modifier.c \
+			sources/ft_printf_get_flags.c \
+			sources/ft_printf_get_precision.c \
 
 OBJ =		$(SRC:.c=.o)
 
@@ -155,7 +157,7 @@ re: fclean all
 #			Compilation Rules
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $^ -I $(INC)
+	$(CC) $(CFLAGS) -I $(INC) -c -o $@ $^
 
 affcompil:
 	@echo "$(BLU)--::Libftprintf Compilation::--$(DEF)"
