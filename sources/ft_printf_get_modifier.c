@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 22:17:15 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/07 16:19:52 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/04/07 23:03:54 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,5 @@ void			ft_printf_get_modifier(t_printf *p, const char *format)
 	}
 	else if (format[p->index] == 'z')
 		p->modifier = FT_PRINTF_Z;
-	else
-		return ;
 	++p->index;
 }
