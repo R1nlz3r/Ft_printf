@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 10:19:56 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/07 23:00:47 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/04/08 18:12:01 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ typedef struct					s_printf
 	int							error;
 	int							index;
 	int							ret;
+	char						pad_0[4];
 //			Parsing //
+	int							width;
 	int							precision;
 	t_printf_flags				*flags;
 	enum e_printf_modifier		modifier;
@@ -75,4 +77,6 @@ void			ft_printf_get_conv(t_printf *p, const char *format);
 void			ft_printf_get_modifier(t_printf *p, const char *format);
 void			ft_printf_get_flag(t_printf *p, const char *format);
 void			ft_printf_get_precision(t_printf *p, const char *format);
+void			ft_printf_get_width(t_printf *p, const char *format);
+
 #endif
