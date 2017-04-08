@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 19:57:38 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/07 15:55:03 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/04/08 01:44:55 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,12 @@ t_printf		*ft_printf_parsing(t_printf *p, const char *format)
 	{
 		if (ft_strrchr("hljz", format[p->index]))
 			ft_printf_get_modifier(p, format);
-		//add elements de parsing
+		else if (ft_strrchr("#0-+ ", format[p->index]))
+			ft_printf_get_flag(p, format);
+		else if (format[p->index] == '.')
+			ft_printf_get_precision(p, format);
+//		else if (ft_isdigit((int)format[p->index]) && format[p->index] != '0')
+//			ft_printf_get_width(p, format);
 		else
 		{
 			p->error = -1;
