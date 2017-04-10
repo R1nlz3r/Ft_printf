@@ -6,7 +6,7 @@
 #    By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 03:03:10 by mapandel          #+#    #+#              #
-#    Updated: 2017/04/08 21:16:41 by mapandel         ###   ########.fr        #
+#    Updated: 2017/04/10 03:19:57 by mapandel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,6 +123,7 @@ SRC =		libft/ft_atoi.c \
 			sources/ft_printf_get_width.c \
 			sources/ft_printf_conv.c \
 			sources/ft_printf_s.c \
+			sources/ft_printf_d.c \
 
 OBJ =		$(SRC:.c=.o)
 
