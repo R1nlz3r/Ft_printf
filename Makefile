@@ -6,7 +6,7 @@
 #    By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 03:03:10 by mapandel          #+#    #+#              #
-#    Updated: 2017/04/10 03:19:57 by mapandel         ###   ########.fr        #
+#    Updated: 2017/04/15 02:27:59 by mapandel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,9 @@ SRC =		libft/ft_atoi.c \
 			libft/ft_isupper.c \
 			libft/ft_isxdigit.c \
 			libft/ft_itoa.c \
-			libft/ft_itoabase_signed.c \
-			libft/ft_itoabase_unsigned.c \
+			libft/ft_lltoabase_signed.c \
+			libft/ft_lltoabase_signless.c \
+			libft/ft_lltoabase_unsigned.c \
 			libft/ft_lstadd.c \
 			libft/ft_lstdel.c \
 			libft/ft_lstdelone.c \
@@ -124,6 +125,7 @@ SRC =		libft/ft_atoi.c \
 			sources/ft_printf_conv.c \
 			sources/ft_printf_s.c \
 			sources/ft_printf_d.c \
+			sources/ft_printf_o.c \
 
 OBJ =		$(SRC:.c=.o)
 
