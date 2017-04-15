@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 10:27:37 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/10 17:56:33 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/04/13 12:15:34 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void		init_t_printf_tab_ptr(t_printf *p)
 {
 	p->tab_ptr[0] = &ft_printf_s;
 	p->tab_ptr[1] = &ft_printf_d;
+	p->tab_ptr[2] = &ft_printf_o;
 }
 
 t_printf		*init_t_printf(t_printf *p)
