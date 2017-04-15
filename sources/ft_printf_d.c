@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/09 15:21:19 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/10 17:54:08 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/04/15 20:21:01 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static t_printf		*ft_printf_d_precision(t_printf *p, long long tmp)
 	return (p);
 }
 
-static t_printf		*ft_printf_d_width(t_printf *p)
+static t_printf		*ft_printf_d_width(t_printf *p, long long nbr)
 {
 	size_t		tmp;
 	char		*str;
@@ -72,9 +72,16 @@ static t_printf		*ft_printf_d_width(t_printf *p)
 	if (p->width != -1 && (size_t)p->width > ft_strlen(p->conv_ret)
 		&& (tmp = (size_t)p->width - ft_strlen(p->conv_ret)))
 	{
+		if ((nbr < 0 && p->flags->zero) || (((p->flags->plus && nbr >= 0)
+			|| p->flags->space) && p->flags->zero))
+			--tmp;
 		if (!(str = ft_strnew(tmp)) && (p->error = -1))
 			return (p);
-		str = ft_strfill(str, ' ', tmp);
+		if (p->flags->zero && (p->precision == -1 || !p->precision)
+			&& !p->flags->less)
+			str = ft_strfill(str, '0', tmp);
+		else
+			str = ft_strfill(str, ' ', tmp);
 		if (p->flags->less)
 			buf = ft_strjoin(p->conv_ret, str);
 		else
@@ -88,7 +95,7 @@ static t_printf		*ft_printf_d_width(t_printf *p)
 	return (p);
 }
 
-static t_printf		*ft_printf_d_flags(t_printf *p)
+static t_printf		*ft_printf_d_flags(t_printf *p, long long tmp)
 {
 	char		*str;
 	char		*buf;
@@ -97,9 +104,11 @@ static t_printf		*ft_printf_d_flags(t_printf *p)
 	buf = NULL;
 	if ((!(str = ft_strnew(1))) && (p->error = -1))
 		return (p);
-	if (p->flags->plus)
+	if (tmp < 0 || (p->flags->plus && tmp >= 0))
 	{
 		str[0] = '+';
+		if (tmp < 0)
+			str[0] = '-';
 		buf = ft_strjoin(str, p->conv_ret);
 		ft_strdel(&p->conv_ret);
 		p->conv_ret = buf;
@@ -121,17 +130,22 @@ t_printf			*ft_printf_d(t_printf *p)
 
 	if (!(p->conv == FT_PRINTF_D))
 		return (p);
-	if (!(p->conv_ret = ft_itoabase_signed((tmp = ft_printf_d_get_arg(p)), 10))
+	if (!(p->conv_ret = ft_lltoabase_signless(
+		(tmp = ft_printf_d_get_arg(p)), 10))
 		&& (p->error = -1))
 		return (p);
 	p = ft_printf_d_precision(p, tmp);
 	if (p->error)
 		return (p);
-	if (tmp >= 0)
-		p = ft_printf_d_flags(p);
+	if (!p->flags->zero)
+		p = ft_printf_d_flags(p, tmp);
 	if (p->error)
 		return (p);
-	p = ft_printf_d_width(p);
+	p = ft_printf_d_width(p, tmp);
+	if (p->error)
+		return (p);
+	if (p->flags->zero)
+		p = ft_printf_d_flags(p, tmp);
 	if (p->error)
 		return (p);
 	ft_putstr(p->conv_ret);
