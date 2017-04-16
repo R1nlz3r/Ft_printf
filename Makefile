@@ -6,7 +6,7 @@
 #    By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 03:03:10 by mapandel          #+#    #+#              #
-#    Updated: 2017/04/16 17:05:50 by mapandel         ###   ########.fr        #
+#    Updated: 2017/04/16 17:50:15 by mapandel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,6 +126,7 @@ SRC =		libft/ft_atoi.c \
 			sources/ft_printf_get_width.c \
 			sources/ft_printf_conv.c \
 			sources/ft_printf_s.c \
+			sources/ft_printf_p.c \
 			sources/ft_printf_d.c \
 			sources/ft_printf_o.c \
 			sources/ft_printf_u.c \
