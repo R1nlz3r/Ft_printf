@@ -6,7 +6,7 @@
 #    By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 03:03:10 by mapandel          #+#    #+#              #
-#    Updated: 2017/04/15 21:19:33 by mapandel         ###   ########.fr        #
+#    Updated: 2017/04/16 17:05:50 by mapandel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,7 +105,9 @@ SRC =		libft/ft_atoi.c \
 			libft/ft_strsub.c \
 			libft/ft_strsub_leakless.c \
 			libft/ft_strtolower.c \
+			libft/ft_strtolower_leakless.c \
 			libft/ft_strtoupper.c \
+			libft/ft_strtoupper_leakless.c \
 			libft/ft_strtrim.c \
 			libft/ft_tabfill.c \
 			libft/ft_tabnew.c \
@@ -127,6 +129,8 @@ SRC =		libft/ft_atoi.c \
 			sources/ft_printf_d.c \
 			sources/ft_printf_o.c \
 			sources/ft_printf_u.c \
+			sources/ft_printf_x.c \
+			sources/ft_printf_percent.c \
 
 OBJ =		$(SRC:.c=.o)
 
