@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 10:19:56 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/15 21:21:39 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/04/16 17:06:08 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct					s_printf
 	t_printf_flags				*flags;
 	enum e_printf_modifier		modifier;
 	enum e_printf_conv			conv;
-	struct s_printf*(*tab_ptr[4])(struct s_printf *p);
+	struct s_printf*(*tab_ptr[6])(struct s_printf *p);
 }								t_printf;
 
 int				ft_printf(char *format, ...);
@@ -83,5 +83,7 @@ t_printf		*ft_printf_s(t_printf *p);
 t_printf		*ft_printf_d(t_printf *p);
 t_printf		*ft_printf_o(t_printf *p);
 t_printf		*ft_printf_u(t_printf *p);
+t_printf		*ft_printf_x(t_printf *p);
+t_printf		*ft_printf_percent(t_printf *p);
 
 #endif
