@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 10:27:37 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/16 17:06:28 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/04/16 17:50:35 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ void			reset_t_printf(t_printf *p)
 static void		init_t_printf_tab_ptr(t_printf *p)
 {
 	p->tab_ptr[0] = &ft_printf_s;
-	p->tab_ptr[1] = &ft_printf_d;
-	p->tab_ptr[2] = &ft_printf_o;
-	p->tab_ptr[3] = &ft_printf_u;
-	p->tab_ptr[4] = &ft_printf_x;
-	p->tab_ptr[5] = &ft_printf_percent;
+	p->tab_ptr[1] = &ft_printf_p;
+	p->tab_ptr[2] = &ft_printf_d;
+	p->tab_ptr[3] = &ft_printf_o;
+	p->tab_ptr[4] = &ft_printf_u;
+	p->tab_ptr[5] = &ft_printf_x;
+	p->tab_ptr[6] = &ft_printf_percent;
 }
 
 t_printf		*init_t_printf(t_printf *p)
