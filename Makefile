@@ -6,7 +6,7 @@
 #    By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 03:03:10 by mapandel          #+#    #+#              #
-#    Updated: 2017/04/16 17:50:15 by mapandel         ###   ########.fr        #
+#    Updated: 2017/04/18 00:56:27 by mapandel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,12 @@ SRC =		libft/ft_atoi.c \
 			libft/ft_putnbr_fd.c \
 			libft/ft_putstr.c \
 			libft/ft_putstr_fd.c \
+			libft/ft_putwchar.c \
+			libft/ft_putwchar_fd.c \
+			libft/ft_putwendl.c \
+			libft/ft_putwendl_fd.c \
+			libft/ft_putwstr.c \
+			libft/ft_putwstr_fd.c \
 			libft/ft_stradd.c \
 			libft/ft_stradd_leakless.c \
 			libft/ft_strcat.c \
@@ -113,6 +119,7 @@ SRC =		libft/ft_atoi.c \
 			libft/ft_tabnew.c \
 			libft/ft_tolower.c \
 			libft/ft_toupper.c \
+			libft/ft_wstrlen.c \
 			libft/get_next_line.c \
 			libft/get_next_char.c \
 			sources/ft_printf.c \
@@ -131,6 +138,7 @@ SRC =		libft/ft_atoi.c \
 			sources/ft_printf_o.c \
 			sources/ft_printf_u.c \
 			sources/ft_printf_x.c \
+			sources/ft_printf_c.c \
 			sources/ft_printf_percent.c \
 
 OBJ =		$(SRC:.c=.o)
