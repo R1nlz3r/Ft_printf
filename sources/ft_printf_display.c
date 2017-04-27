@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 19:57:38 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/08 22:24:34 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/04/27 03:18:11 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ void		ft_printf_display(t_printf *p, const char *format)
 			if (!format[++p->index])
 				break ;
 			p = ft_printf_parsing(p, format);
-			if (p->error)
+			if (p->error == -1)
 				break ;
-			p = ft_printf_conv(p);
-			if (p->error)
+			if (p->error != 1)
+				p = ft_printf_conv(p);
+			if (p->error == -1)
 				break ;
 			reset_t_printf(p);
 		}
