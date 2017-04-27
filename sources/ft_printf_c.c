@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/17 00:54:42 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/17 06:16:45 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/04/27 01:34:32 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_printf		*ft_printf_c_width(t_printf *p)
 	{
 		if (!(str = ft_strnew(tmp)) && (p->error = -1))
 			return (p);
-		if (p->flags->zero)
+		if (p->flags->zero && !p->flags->less)
 			str = ft_strfill(str, '0', tmp);
 		else
 			str = ft_strfill(str, ' ', tmp);
