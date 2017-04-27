@@ -6,7 +6,7 @@
 #    By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 03:03:10 by mapandel          #+#    #+#              #
-#    Updated: 2017/04/18 00:56:27 by mapandel         ###   ########.fr        #
+#    Updated: 2017/04/25 01:21:55 by mapandel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -119,7 +119,18 @@ SRC =		libft/ft_atoi.c \
 			libft/ft_tabnew.c \
 			libft/ft_tolower.c \
 			libft/ft_toupper.c \
+			libft/ft_wstrcat.c \
+			libft/ft_wstrcpy.c \
+			libft/ft_wstrdel.c \
+			libft/ft_wstrdup.c \
+			libft/ft_wstrfill.c \
+			libft/ft_wstrjoin.c \
+			libft/ft_wstrjoin_leakless.c \
 			libft/ft_wstrlen.c \
+			libft/ft_wstrlenuni.c \
+			libft/ft_wstrnew.c \
+			libft/ft_wstrsub.c \
+			libft/ft_wstrsub_leakless.c \
 			libft/get_next_line.c \
 			libft/get_next_char.c \
 			sources/ft_printf.c \
@@ -133,6 +144,7 @@ SRC =		libft/ft_atoi.c \
 			sources/ft_printf_get_width.c \
 			sources/ft_printf_conv.c \
 			sources/ft_printf_s.c \
+			sources/ft_printf_ss.c \
 			sources/ft_printf_p.c \
 			sources/ft_printf_d.c \
 			sources/ft_printf_o.c \
