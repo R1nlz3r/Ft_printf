@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/30 10:27:37 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/18 01:36:34 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/04/27 03:16:40 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void			reset_t_printf(t_printf *p)
 	p->width = -1;
 	p->modifier = FT_PRINTF_NO_MODIFIERS;
 	p->conv = FT_PRINTF_WAIT_INPUT;
+	p->error = 0;
 	ft_strdel(&p->conv_ret);
 }
 
@@ -55,7 +56,6 @@ t_printf		*init_t_printf(t_printf *p)
 		exit(-1);
 	init_t_printf_tab_ptr(p);
 	reset_t_printf(p);
-	p->error = 0;
 	p->index = 0;
 	p->ret = 0;
 	return (p);
