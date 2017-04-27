@@ -6,7 +6,7 @@
 #    By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 03:03:10 by mapandel          #+#    #+#              #
-#    Updated: 2017/04/25 01:21:55 by mapandel         ###   ########.fr        #
+#    Updated: 2017/04/27 05:05:19 by mapandel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -151,6 +151,7 @@ SRC =		libft/ft_atoi.c \
 			sources/ft_printf_u.c \
 			sources/ft_printf_x.c \
 			sources/ft_printf_c.c \
+			sources/ft_printf_cc.c \
 			sources/ft_printf_percent.c \
 
 OBJ =		$(SRC:.c=.o)
