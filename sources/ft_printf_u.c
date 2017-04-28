@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/15 21:18:39 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/15 21:26:04 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/04/28 00:14:54 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ static t_printf		*ft_printf_u_width(t_printf *p)
 	{
 		if (!(str = ft_strnew(tmp)) && (p->error = -1))
 			return (p);
-		if (p->flags->zero && (p->precision == -1 || !p->precision)
-			&& !p->flags->less)
+		if (p->flags->zero && p->precision == -1 && !p->flags->less)
 			str = ft_strfill(str, '0', tmp);
 		else
 			str = ft_strfill(str, ' ', tmp);
