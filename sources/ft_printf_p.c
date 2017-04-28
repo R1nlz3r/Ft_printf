@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/16 17:52:55 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/27 03:30:02 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/04/28 00:25:00 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,11 @@ static t_printf		*ft_printf_p_width(t_printf *p)
 	if (p->width != -1 && (size_t)p->width > ft_strlen(p->conv_ret)
 		&& (tmp = (size_t)p->width - ft_strlen(p->conv_ret)))
 	{
-		if (p->flags->zero && (p->precision == -1 || !p->precision)
-			&& !p->flags->less)
+		if (p->flags->zero && p->precision == -1 && !p->flags->less)
 			tmp -= 2;
 		if (!(str = ft_strnew(tmp)) && (p->error = -1))
 			return (p);
-		if (p->flags->zero && (p->precision == -1 || !p->precision)
-			&& !p->flags->less)
+		if (p->flags->zero && p->precision == -1 && !p->flags->less)
 			str = ft_strfill(str, '0', tmp);
 		else
 			str = ft_strfill(str, ' ', tmp);
@@ -112,21 +110,17 @@ t_printf					*ft_printf_p(t_printf *p)
 	p = ft_printf_p_precision(p, tmp);
 	if (p->error)
 		return (p);
-	if (!(p->flags->zero && (p->precision == -1 || !p->precision)
-		&& !p->flags->less))
+	if (!(p->flags->zero && p->precision == -1 && !p->flags->less))
 		p = ft_printf_p_flags(p);
 	if (p->error)
 		return (p);
 	p = ft_printf_p_width(p);
 	if (p->error)
 		return (p);
-	if (p->flags->zero && (p->precision == -1 || !p->precision)
-		&& !p->flags->less)
+	if (p->flags->zero && p->precision == -1 && !p->flags->less)
 		p = ft_printf_p_flags(p);
 	if (p->error)
 		return (p);
-	if (p->conv == FT_PRINTF_XX)
-		p->conv_ret = ft_strtoupper_leakless(p->conv_ret);
 	ft_putstr(p->conv_ret);
 	p->ret += ft_strlen(p->conv_ret);
 	return (p);
