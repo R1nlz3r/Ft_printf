@@ -6,13 +6,13 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 05:08:19 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/27 05:29:35 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/04/27 23:43:28 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static wchar_t		*ft_printf_c_width(t_printf *p, wchar_t *str)
+static wchar_t		*ft_printf_cc_width(t_printf *p, wchar_t *str)
 {
 	size_t		tmp;
 	wchar_t		*str2;
@@ -21,12 +21,14 @@ static wchar_t		*ft_printf_c_width(t_printf *p, wchar_t *str)
 	if (p->width != -1 && (size_t)p->width > ft_wstrlenuni(str)
 		&& (tmp = (size_t)p->width - ft_wstrlenuni(str)))
 	{
+		if (!str[0])
+			--tmp;
 		if (!(str2 = ft_wstrnew(tmp)) && (p->error = -1))
 			return (str);
 		if (p->flags->zero && !p->flags->less)
 			str2 = ft_wstrfill(str2, L'0', tmp);
 		else
-			str = ft_wstrfill(str2, L' ', tmp);
+			str2 = ft_wstrfill(str2, L' ', tmp);
 		if (p->flags->less)
 			buf = ft_wstrjoin(str, str2);
 		else
@@ -51,7 +53,7 @@ t_printf			*ft_printf_cc(t_printf *p)
 	if (!(str = ft_wstrnew(1)) && (p->error = -1))
 		return (p);
 	str[0] = tmp;
-	str = ft_printf_c_width(p, str);
+	str = ft_printf_cc_width(p, str);
 	if (p->error)
 		return (p);
 	if (!p->flags->less)
