@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 12:16:09 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/15 20:22:07 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/04/27 19:59:34 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static t_printf		*ft_printf_o_precision(t_printf *p, unsigned long long tmp)
 	else if (p->precision != -1 && (size_t)p->precision > ft_strlen(p->conv_ret)
 		&& (tmp2 = (size_t)p->precision - ft_strlen(p->conv_ret)))
 	{
+		if (p->flags->sharp && (tmp || (!tmp && !p->precision)))
+			--tmp2;
 		if (!(str = ft_strnew(tmp2)) && (p->error = -1))
 			return (p);
 		str = ft_strfill(str, '0', tmp2);
@@ -74,8 +76,7 @@ static t_printf		*ft_printf_o_width(t_printf *p)
 	{
 		if (!(str = ft_strnew(tmp)) && (p->error = -1))
 			return (p);
-		if (p->flags->zero && (p->precision == -1 || !p->precision)
-			&& !p->flags->less)
+		if (p->flags->zero && p->precision == -1 && !p->flags->less)
 			str = ft_strfill(str, '0', tmp);
 		else
 			str = ft_strfill(str, ' ', tmp);
