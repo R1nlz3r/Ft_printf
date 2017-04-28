@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/09 15:21:19 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/15 20:21:01 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/04/27 20:59:28 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ static t_printf		*ft_printf_d_width(t_printf *p, long long nbr)
 	if (p->width != -1 && (size_t)p->width > ft_strlen(p->conv_ret)
 		&& (tmp = (size_t)p->width - ft_strlen(p->conv_ret)))
 	{
-		if ((nbr < 0 && p->flags->zero) || (((p->flags->plus && nbr >= 0)
-			|| p->flags->space) && p->flags->zero))
+		if (((nbr < 0 && p->flags->zero) || (((p->flags->plus && nbr >= 0)
+			|| p->flags->space) && p->flags->zero)) && p->precision == -1
+			&& !p->flags->less)
 			--tmp;
 		if (!(str = ft_strnew(tmp)) && (p->error = -1))
 			return (p);
-		if (p->flags->zero && (p->precision == -1 || !p->precision)
-			&& !p->flags->less)
+		if (p->flags->zero && p->precision == -1 && !p->flags->less)
 			str = ft_strfill(str, '0', tmp);
 		else
 			str = ft_strfill(str, ' ', tmp);
@@ -137,14 +137,14 @@ t_printf			*ft_printf_d(t_printf *p)
 	p = ft_printf_d_precision(p, tmp);
 	if (p->error)
 		return (p);
-	if (!p->flags->zero)
+	if (!(p->flags->zero && p->precision == -1 && !p->flags->less))
 		p = ft_printf_d_flags(p, tmp);
 	if (p->error)
 		return (p);
 	p = ft_printf_d_width(p, tmp);
 	if (p->error)
 		return (p);
-	if (p->flags->zero)
+	if (p->flags->zero && p->precision == -1 && !p->flags->less)
 		p = ft_printf_d_flags(p, tmp);
 	if (p->error)
 		return (p);
