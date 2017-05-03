@@ -6,11 +6,29 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/08 19:34:38 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/27 02:21:16 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/05/03 12:22:14 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static wchar_t		*ft_printf_ss_check_arg(t_printf *p, wchar_t *tmp)
+{
+	size_t		i;
+
+	i = 0;
+	if (!tmp)
+		return (tmp);
+	while (tmp[i])
+	{
+		if ((tmp[i] < 0 || (MB_CUR_MAX != 4 && tmp[i] > 255)
+			|| (MB_CUR_MAX == 4 && (tmp[i] > 1114111
+			|| (tmp[i] > 55295 && tmp[i] < 57344)))) && (p->error = 1))
+			return (tmp);
+		++i;
+	}
+	return (tmp);
+}
 
 static wchar_t		*ft_printf_ss_precision(t_printf *p, wchar_t *str)
 {
@@ -60,12 +78,11 @@ t_printf			*ft_printf_ss(t_printf *p)
 
 	if (!(p->conv == FT_PRINTF_S && p->modifier == FT_PRINTF_L))
 		return (p);
-	if (MB_CUR_MAX != 4 && (p->ret = -1))
-	{
-		p->error = -1;
+	tmp = va_arg(p->ap, wchar_t*);
+	tmp = ft_printf_ss_check_arg(p, tmp);
+	if (p->error)
 		return (p);
-	}
-	if (!(tmp = va_arg(p->ap, wchar_t*)))
+	if (!tmp)
 	{
 		if (!(str = ft_wstrdup(L"(null)")) && (p->error = -1))
 			return (p);
