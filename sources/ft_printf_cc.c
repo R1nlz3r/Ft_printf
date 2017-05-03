@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 05:08:19 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/27 23:43:28 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/05/03 12:28:50 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ t_printf			*ft_printf_cc(t_printf *p)
 	if (!(p->conv == FT_PRINTF_C && p->modifier == FT_PRINTF_L))
 		return (p);
 	tmp = (wchar_t)va_arg(p->ap, wint_t);
+	if ((tmp < 0 || (MB_CUR_MAX != 4 && tmp > 255) || (MB_CUR_MAX == 4
+		&& (tmp > 1114111 || (tmp > 55295 && tmp < 57344)))) && (p->error = 1))
+		return (p);
 	if (!(str = ft_wstrnew(1)) && (p->error = -1))
 		return (p);
 	str[0] = tmp;
