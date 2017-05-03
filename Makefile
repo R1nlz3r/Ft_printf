@@ -6,7 +6,7 @@
 #    By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 03:03:10 by mapandel          #+#    #+#              #
-#    Updated: 2017/04/27 06:26:21 by mapandel         ###   ########.fr        #
+#    Updated: 2017/05/03 15:05:45 by mapandel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -159,6 +159,8 @@ OBJ =		$(SRC:.c=.o)
 
 INC =		includes
 
+LIBPATH =	libft/libft.a
+
 #			Colors
 
 DEF =		\033[0m
@@ -181,7 +183,7 @@ WHI =		\033[37m
 $(NAME):
 	@make affcompil
 	@echo "$(GRE)--::Libftprintf Indextion::--$(DEF)"
-	@ar rc $(NAME) $(LIBPATH) $(OBJ)
+	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 
 all: $(NAME)
@@ -200,9 +202,9 @@ affcompil:
 #			Clean Rules
 
 clean:
-	@echo "$(PUR)--::Libftprintf.a Binary Delection::--$(DEF)"
+	@echo "$(PUR)--::Library Binary Delection::--$(DEF)"
 	@rm -rf $(OBJ)
 
 fclean: clean
 	@echo "$(RED)--::Library Delection::--$(DEF)"
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(LIBPATH)
