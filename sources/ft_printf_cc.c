@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 05:08:19 by mapandel          #+#    #+#             */
-/*   Updated: 2017/05/03 12:28:50 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/07/18 22:01:00 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static wchar_t		*ft_printf_cc_width(t_printf *p, wchar_t *str)
 	{
 		if (!str[0])
 			--tmp;
-		if (!(str2 = ft_wstrnew(tmp)) && (p->error = -1))
+		if (!(str2 = ft_wstrnew(tmp))
+			&& (p->error = -1))
 			return (str);
 		if (p->flags->zero && !p->flags->less)
 			str2 = ft_wstrfill(str2, L'0', tmp);
@@ -33,8 +34,6 @@ static wchar_t		*ft_printf_cc_width(t_printf *p, wchar_t *str)
 			buf = ft_wstrjoin(str, str2);
 		else
 			buf = ft_wstrjoin(str2, str);
-		if (!buf && (p->error = -1))
-			return (str);
 		ft_wstrdel(&str2);
 		ft_wstrdel(&str);
 		str = buf;
@@ -51,10 +50,10 @@ t_printf			*ft_printf_cc(t_printf *p)
 		return (p);
 	tmp = (wchar_t)va_arg(p->ap, wint_t);
 	if ((tmp < 0 || (MB_CUR_MAX != 4 && tmp > 255) || (MB_CUR_MAX == 4
-		&& (tmp > 1114111 || (tmp > 55295 && tmp < 57344)))) && (p->error = 1))
+		&& (tmp > 1114111 || (tmp > 55295 && tmp < 57344))))
+		&& (p->error = 1))
 		return (p);
-	if (!(str = ft_wstrnew(1)) && (p->error = -1))
-		return (p);
+	str = ft_wstrnew(1);
 	str[0] = tmp;
 	str = ft_printf_cc_width(p, str);
 	if (p->error)
