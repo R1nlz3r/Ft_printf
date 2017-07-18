@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 22:17:15 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/17 20:50:06 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/07/18 21:30:57 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void			ft_printf_get_modifier(t_printf *p, const char *format)
 {
 	if (format[p->index] == 'h')
 	{
-		if (p->modifier == FT_PRINTF_H)
+		if (p->modifier == FT_PRINTF_HH)
+			p->modifier = FT_PRINTF_HHH;
+		else if (p->modifier < FT_PRINTF_HH)
 			p->modifier = FT_PRINTF_HH;
-		else if (p->modifier < FT_PRINTF_H)
-			p->modifier = FT_PRINTF_H;
 	}
 	else if (format[p->index] == 'j' && p->modifier < FT_PRINTF_J)
 		p->modifier = FT_PRINTF_J;
