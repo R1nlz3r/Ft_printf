@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/16 02:01:59 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/28 00:19:57 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/07/18 22:43:20 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static unsigned long long	ft_printf_x_get_arg(t_printf *p)
 	ret = 0;
 	if (p->modifier == FT_PRINTF_NO_MODIFIERS)
 		ret = va_arg(p->ap, unsigned int);
-	else if (p->modifier == FT_PRINTF_H)
-		ret = (unsigned long long)(unsigned short)va_arg(p->ap, unsigned int);
 	else if (p->modifier == FT_PRINTF_HH)
+		ret = (unsigned long long)(unsigned short)va_arg(p->ap, unsigned int);
+	else if (p->modifier == FT_PRINTF_HHH)
 		ret = (unsigned long long)(unsigned char)va_arg(p->ap, unsigned int);
 	else if (p->modifier == FT_PRINTF_J)
 		ret = va_arg(p->ap, uintmax_t);
@@ -34,7 +34,8 @@ static unsigned long long	ft_printf_x_get_arg(t_printf *p)
 	return (ret);
 }
 
-static t_printf		*ft_printf_x_precision(t_printf *p, unsigned long long tmp)
+static t_printf				*ft_printf_x_precision(t_printf *p,
+	unsigned long long tmp)
 {
 	size_t		tmp2;
 	char		*str;
@@ -42,15 +43,15 @@ static t_printf		*ft_printf_x_precision(t_printf *p, unsigned long long tmp)
 
 	if (p->precision == 0 && !tmp)
 	{
-		if (!(str = ft_strnew(0)) && (p->error = -1))
-			return (p);
+		str = ft_strnew(0);
 		ft_strdel(&p->conv_ret);
 		p->conv_ret = str;
 	}
 	else if (p->precision != -1 && (size_t)p->precision > ft_strlen(p->conv_ret)
 		&& (tmp2 = (size_t)p->precision - ft_strlen(p->conv_ret)))
 	{
-		if (!(str = ft_strnew(tmp2)) && (p->error = -1))
+		if (!(str = ft_strnew(tmp2))
+			&& (p->error = -1))
 			return (p);
 		str = ft_strfill(str, '0', tmp2);
 		buf = ft_strjoin(str, p->conv_ret);
@@ -63,7 +64,7 @@ static t_printf		*ft_printf_x_precision(t_printf *p, unsigned long long tmp)
 	return (p);
 }
 
-static t_printf		*ft_printf_x_width(t_printf *p)
+static t_printf				*ft_printf_x_width(t_printf *p)
 {
 	size_t		tmp;
 	char		*str;
@@ -75,8 +76,7 @@ static t_printf		*ft_printf_x_width(t_printf *p)
 		if (p->flags->zero && p->precision == -1 && !p->flags->less
 			&& p->flags->sharp)
 			tmp -= 2;
-		if (!(str = ft_strnew(tmp)) && (p->error = -1))
-			return (p);
+		str = ft_strnew(tmp);
 		if (p->flags->zero && p->precision == -1 && !p->flags->less)
 			str = ft_strfill(str, '0', tmp);
 		else
@@ -85,8 +85,6 @@ static t_printf		*ft_printf_x_width(t_printf *p)
 			buf = ft_strjoin(p->conv_ret, str);
 		else
 			buf = ft_strjoin(str, p->conv_ret);
-		if (!buf && (p->error = -1))
-			return (p);
 		ft_strdel(&p->conv_ret);
 		ft_strdel(&str);
 		p->conv_ret = buf;
@@ -94,7 +92,8 @@ static t_printf		*ft_printf_x_width(t_printf *p)
 	return (p);
 }
 
-static t_printf		*ft_printf_x_flags(t_printf *p, unsigned long long tmp)
+static t_printf				*ft_printf_x_flags(t_printf *p,
+	unsigned long long tmp)
 {
 	char		*str;
 	char		*buf;
@@ -103,7 +102,8 @@ static t_printf		*ft_printf_x_flags(t_printf *p, unsigned long long tmp)
 	buf = NULL;
 	if (p->flags->sharp && tmp)
 	{
-		if ((!(str = ft_strnew(2))) && (p->error = -1))
+		if ((!(str = ft_strnew(2)))
+			&& (p->error = -1))
 			return (p);
 		str[0] = '0';
 		str[1] = 'x';
@@ -121,10 +121,8 @@ t_printf					*ft_printf_x(t_printf *p)
 
 	if (!(p->conv == FT_PRINTF_X || p->conv == FT_PRINTF_XX))
 		return (p);
-	if (!(p->conv_ret = ft_lltoabase_unsigned(
-		(tmp = ft_printf_x_get_arg(p)), 16))
-		&& (p->error = -1))
-		return (p);
+	p->conv_ret = ft_lltoabase_unsigned(
+		(tmp = ft_printf_x_get_arg(p)), 16);
 	p = ft_printf_x_precision(p, tmp);
 	if (p->error)
 		return (p);
