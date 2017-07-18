@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 06:38:11 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/27 17:24:23 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/07/18 22:09:59 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ static t_printf		*ft_printf_width(t_printf *p)
 	if (p->width != -1 && (size_t)p->width > 1
 		&& (tmp = (size_t)p->width - 1))
 	{
-		if (!(str = ft_strnew(tmp)) && (p->error = -1))
-			return (p);
+		str = ft_strnew(tmp);
 		if (p->flags->zero && (p->precision == -1 || !p->precision)
 			&& !p->flags->less)
 			str = ft_strfill(str, '0', tmp);
@@ -45,7 +44,8 @@ t_printf			*ft_printf_no_conv(t_printf *p)
 {
 	if (!(p->conv == FT_PRINTF_NO_MODIFIERS))
 		return (p);
-	if (!(p->conv_ret = ft_strnew(1)) && (p->error = -1))
+	if (!(p->conv_ret = ft_strnew(1))
+		&& (p->error = -1))
 		return (p);
 	p->conv_ret[0] = p->tmpchar;
 	p = ft_printf_width(p);
