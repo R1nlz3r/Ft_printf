@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/08 19:34:38 by mapandel          #+#    #+#             */
-/*   Updated: 2017/05/03 12:22:14 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/07/18 22:36:04 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static wchar_t		*ft_printf_ss_width(t_printf *p, wchar_t *str)
 	if (p->width != -1 && (size_t)p->width > ft_wstrlenuni(str)
 		&& (tmp = (size_t)p->width - ft_wstrlenuni(str)))
 	{
-		if (!(str2 = ft_wstrnew(tmp)) && (p->error = -1))
+		if (!(str2 = ft_wstrnew(tmp))
+			&& (p->error = -1))
 			return (str);
 		if (p->flags->zero && !p->flags->less)
 			str2 = ft_wstrfill(str2, L'0', tmp);
@@ -83,11 +84,9 @@ t_printf			*ft_printf_ss(t_printf *p)
 	if (p->error)
 		return (p);
 	if (!tmp)
-	{
-		if (!(str = ft_wstrdup(L"(null)")) && (p->error = -1))
-			return (p);
-	}
-	else if (!(str = ft_wstrdup(tmp)) && (p->error = -1))
+		str = ft_wstrdup(L"(null)");
+	else if (!(str = ft_wstrdup(tmp))
+		&& (p->error = -1))
 		return (p);
 	str = ft_printf_ss_precision(p, str);
 	if (p->error)
