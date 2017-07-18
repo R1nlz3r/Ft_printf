@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/08 19:34:38 by mapandel          #+#    #+#             */
-/*   Updated: 2017/04/27 01:33:26 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/07/18 22:32:46 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static t_printf		*ft_printf_s_width(t_printf *p)
 	if (p->width != -1 && (size_t)p->width > ft_strlen(p->conv_ret)
 		&& (tmp = (size_t)p->width - ft_strlen(p->conv_ret)))
 	{
-		if (!(str = ft_strnew(tmp)) && (p->error = -1))
+		if (!(str = ft_strnew(tmp))
+			&& (p->error = -1))
 			return (p);
 		if (p->flags->zero && !p->flags->less)
 			str = ft_strfill(str, '0', tmp);
@@ -45,8 +46,6 @@ static t_printf		*ft_printf_s_width(t_printf *p)
 			buf = ft_strjoin(p->conv_ret, str);
 		else
 			buf = ft_strjoin(str, p->conv_ret);
-		if (!buf && (p->error = -1))
-			return (p);
 		ft_strdel(&p->conv_ret);
 		ft_strdel(&str);
 		p->conv_ret = buf;
@@ -62,10 +61,12 @@ t_printf			*ft_printf_s(t_printf *p)
 		return (p);
 	if (!(str = va_arg(p->ap, char*)))
 	{
-		if (!(p->conv_ret = ft_strdup("(null)")) && (p->error = -1))
+		if (!(p->conv_ret = ft_strdup("(null)"))
+			&& (p->error = -1))
 			return (p);
 	}
-	else if (!(p->conv_ret = ft_strdup(str)) && (p->error = -1))
+	else if (!(p->conv_ret = ft_strdup(str))
+		&& (p->error = -1))
 		return (p);
 	p = ft_printf_s_precision(p);
 	if (p->error)
